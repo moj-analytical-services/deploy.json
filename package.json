@@ -1,0 +1,28 @@
+{
+  "name": "deploy.json",
+  "version": "1.0.0",
+  "description": "JSONSchema for deploy.json",
+  "repository": "git@github.com:moj-analytical-services/deploy.json.git",
+  "author": "Ravi Kotecha <kotecha.ravi@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@adobe/jsonschema2md": "^3.0.0",
+    "gh-pages-deploy": "^0.5.1"
+  },
+  "gh-pages-deploy": {
+    "staticpath": "docs",
+    "prep": [
+      "docs"
+    ],
+    "post": [
+      "clean-source"
+    ],
+    "noprompt": true
+  },
+  "scripts": {
+    "docs": "rm -rf docs && mkdir -p docs && jsonschema2md -o ./docs -d ./schemas -n -x -",
+    "deploy": "gh-pages-deploy",
+    "clean-source": "rm -rf docs"
+  }
+}

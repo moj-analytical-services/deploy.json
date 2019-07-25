@@ -8,20 +8,19 @@
   "private": false,
   "devDependencies": {
     "@adobe/jsonschema2md": "^3.0.0",
-    "gh-pages-deploy": "^0.5.1"
+    "gh-pages-deploy": "^0.5.1",
+    "marked": "^0.7.0"
   },
   "gh-pages-deploy": {
     "staticpath": "docs",
     "prep": [
+      "clean-source",
       "docs"
-    ],
-    "post": [
-      "clean-source"
     ],
     "noprompt": true
   },
   "scripts": {
-    "docs": "rm -rf docs && mkdir -p docs && jsonschema2md -o ./docs -d ./schemas -n -x -",
+    "docs": "rm -rf docs && mkdir -p docs && jsonschema2md -o ./docs -d ./schemas -n -x - && marked -i docs/deploy.schema.md -o docs/index.html",
     "deploy": "gh-pages-deploy",
     "clean-source": "rm -rf docs"
   }

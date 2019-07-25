@@ -1,0 +1,173 @@
+<h1 id="schema">Schema</h1>
+<pre><code>https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json/deploy.schema.json</code></pre><table>
+<thead>
+<tr>
+<th>Abstract</th>
+<th>Extensible</th>
+<th>Status</th>
+<th>Identifiable</th>
+<th>Custom Properties</th>
+<th>Additional Properties</th>
+<th>Defined In</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Can be instantiated</td>
+<td>No</td>
+<td>Experimental</td>
+<td>No</td>
+<td>Forbidden</td>
+<td>Permitted</td>
+<td><a href="deploy.schema.json">deploy.schema.json</a></td>
+</tr>
+</tbody></table>
+<h1 id="properties">Properties</h1>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Defined by</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="#allowed_ip_ranges">allowed_ip_ranges</a></td>
+<td><code>string[]</code></td>
+<td>Optional</td>
+<td>No</td>
+<td></td>
+<td>(this schema)</td>
+</tr>
+<tr>
+<td><a href="#disable_authentication">disable_authentication</a></td>
+<td><code>boolean</code></td>
+<td>Optional</td>
+<td>No</td>
+<td></td>
+<td>(this schema)</td>
+</tr>
+<tr>
+<td><a href="#mojanalytics-deploy">mojanalytics-deploy</a></td>
+<td><code>string</code></td>
+<td><strong>Required</strong></td>
+<td>No</td>
+<td></td>
+<td>(this schema)</td>
+</tr>
+<tr>
+<td><a href="#port">port</a></td>
+<td><code>string</code></td>
+<td>Optional</td>
+<td>No</td>
+<td></td>
+<td>(this schema)</td>
+</tr>
+<tr>
+<td><a href="#role_name">role_name</a></td>
+<td><code>string</code></td>
+<td>Optional</td>
+<td>No</td>
+<td></td>
+<td>(this schema)</td>
+</tr>
+<tr>
+<td><a href="#type">type</a></td>
+<td><code>enum</code></td>
+<td>Optional</td>
+<td>No</td>
+<td><code>&quot;webapp&quot;</code></td>
+<td>(this schema)</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>any</td>
+<td>Additional</td>
+<td>Yes</td>
+<td>this schema <em>allows</em> additional properties</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="allowed_ip_ranges">allowed_ip_ranges</h2>
+<p><code>allowed_ip_ranges</code></p>
+<ul>
+<li>is optional</li>
+<li>type: <code>string[]</code></li>
+<li>at least <code>1</code> items in the array</li>
+<li>defined in this schema</li>
+</ul>
+<h3 id="allowed_ip_ranges-type">allowed_ip_ranges Type</h3>
+<p>Array type: <code>string[]</code></p>
+<p>All items must be of the type: <code>string</code></p>
+<h2 id="disable_authentication">disable_authentication</h2>
+<p><code>disable_authentication</code></p>
+<ul>
+<li>is optional</li>
+<li>type: <code>boolean</code></li>
+<li>defined in this schema</li>
+</ul>
+<h3 id="disable_authentication-type">disable_authentication Type</h3>
+<p><code>boolean</code></p>
+<h2 id="mojanalytics-deploy">mojanalytics-deploy</h2>
+<p><code>mojanalytics-deploy</code></p>
+<ul>
+<li>is <strong>required</strong></li>
+<li>type: <code>string</code></li>
+<li>defined in this schema</li>
+</ul>
+<h3 id="mojanalytics-deploy-type">mojanalytics-deploy Type</h3>
+<p><code>string</code></p>
+<h2 id="port">port</h2>
+<p><code>port</code></p>
+<ul>
+<li>is optional</li>
+<li>type: <code>string</code></li>
+<li>defined in this schema</li>
+</ul>
+<h3 id="port-type">port Type</h3>
+<p><code>string</code></p>
+<h2 id="role_name">role_name</h2>
+<p><code>role_name</code></p>
+<ul>
+<li>is optional</li>
+<li>type: <code>string</code></li>
+<li>defined in this schema</li>
+</ul>
+<h3 id="role_name-type">role_name Type</h3>
+<p><code>string</code></p>
+<h2 id="type">type</h2>
+<p><code>type</code></p>
+<ul>
+<li>is optional</li>
+<li>type: <code>enum</code></li>
+<li>default: <code>&quot;webapp&quot;</code></li>
+<li>defined in this schema</li>
+</ul>
+<p>The value of this property <strong>must</strong> be equal to one of the <a href="#type-known-values">known values below</a>.</p>
+<h3 id="type-known-values">type Known Values</h3>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>airflow_dag</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>webapp</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>docker_build</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>lookup</code></td>
+<td></td>
+</tr>
+</tbody></table>

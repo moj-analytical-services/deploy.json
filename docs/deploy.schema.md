@@ -1,53 +1,28 @@
-# Schema
+---
+template: definitions
+hide-nav: true
+---
+
+# MOJ Analytical Services Deploy.json Specification Schema
 
 ```
 https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json/deploy.schema.json
 ```
 
-| Abstract            | Extensible | Status       | Identifiable | Custom Properties | Additional Properties | Defined In                               |
-| ------------------- | ---------- | ------------ | ------------ | ----------------- | --------------------- | ---------------------------------------- |
-| Can be instantiated | No         | Experimental | No           | Forbidden         | Permitted             | [deploy.schema.json](deploy.schema.json) |
+| Abstract               | Extensible | Status       | Identifiable | Custom Properties | Additional Properties | Defined In                               |
+| ---------------------- | ---------- | ------------ | ------------ | ----------------- | --------------------- | ---------------------------------------- |
+| Cannot be instantiated | Yes        | Experimental | No           | Forbidden         | Permitted             | [deploy.schema.json](deploy.schema.json) |
 
-# Properties
+# MOJ Analytical Services Deploy.json Specification Definitions
 
-| Property                                          | Type       | Required     | Nullable | Default                                    | Defined by    |
-| ------------------------------------------------- | ---------- | ------------ | -------- | ------------------------------------------ | ------------- |
-| [allowed_ip_ranges](#allowed_ip_ranges)           | `string[]` | Optional     | No       |                                            | (this schema) |
-| [disable_authentication](#disable_authentication) | `boolean`  | Optional     | No       |                                            | (this schema) |
-| [mojanalytics-deploy](#mojanalytics-deploy)       | `string`   | **Required** | No       |                                            | (this schema) |
-| [port](#port)                                     | `string`   | Optional     | No       |                                            | (this schema) |
-| [role_name](#role_name)                           | `string`   | Optional     | No       |                                            | (this schema) |
-| [type](#type)                                     | `enum`     | Optional     | No       | `"webapp"`                                 | (this schema) |
-| `*`                                               | any        | Additional   | Yes      | this schema _allows_ additional properties |
-
-## allowed_ip_ranges
-
-`allowed_ip_ranges`
-
-- is optional
-- type: `string[]`
-- at least `1` items in the array
-- defined in this schema
-
-### allowed_ip_ranges Type
-
-Array type: `string[]`
-
-All items must be of the type: `string`
-
-## disable_authentication
-
-`disable_authentication`
-
-- is optional
-- type: `boolean`
-- defined in this schema
-
-### disable_authentication Type
-
-`boolean`
+| Property                                    | Type     | Group                                                                                                    |
+| ------------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------- |
+| [mojanalytics-deploy](#mojanalytics-deploy) | `string` | `https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json/deploy.schema.json#/definitions/common` |
+| [type](#type)                               | `enum`   | `https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json/deploy.schema.json#/definitions/common` |
 
 ## mojanalytics-deploy
+
+Version of deploy.json schema you're using
 
 `mojanalytics-deploy`
 
@@ -59,31 +34,16 @@ All items must be of the type: `string`
 
 `string`
 
-## port
+All instances must conform to this regular expression (test examples
+[here](<https://regexr.com/?expression=(%3F%3C%3D%5Ev%3F%7C%5Csv%3F)(%3F%3A0%7C%5B1-9%5D%5Cd*)%5C.(%3F%3A0%7C%5B1-9%5D%5Cd*)%5C.(%3F%3A0%7C%5B1-9%5D%5Cd*)(%3F%3A-(%3F%3A%5B1-9%5D%5Cd*%7C%5B%5Cda-z-%5D*%5Ba-z-%5D%5B%5Cda-z-%5D*)(%3F%3A%5C.(%3F%3A%5B1-9%5D%5Cd*%7C%5B%5Cda-z-%5D*%5Ba-z-%5D%5B%5Cda-z-%5D*))*)%3F(%3F%3A%5C%2B%5B%5Cda-z-%5D%2B(%3F%3A%5C.%5B%5Cda-z-%5D%2B)*)%3F(%3F%3D%24%7C%5Cs)>)):
 
-`port`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-### port Type
-
-`string`
-
-## role_name
-
-`role_name`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-### role_name Type
-
-`string`
+```regex
+(?<=^v?|\sv?)(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-(?:[1-9]\d*|[\da-z-]*[a-z-][\da-z-]*)(?:\.(?:[1-9]\d*|[\da-z-]*[a-z-][\da-z-]*))*)?(?:\+[\da-z-]+(?:\.[\da-z-]+)*)?(?=$|\s)
+```
 
 ## type
+
+The type of deployment
 
 `type`
 
@@ -102,3 +62,17 @@ The value of this property **must** be equal to one of the [known values below](
 | `webapp`       |             |
 | `docker_build` |             |
 | `lookup`       |             |
+
+**Any** following _options_ needs to be fulfilled.
+
+#### Option 1
+
+- []() – `#/definitions/airflow_dag`
+
+#### Option 2
+
+- []() – `#/definitions/webapp`
+
+#### Option 3
+
+- []() – `#/definitions/lookup`

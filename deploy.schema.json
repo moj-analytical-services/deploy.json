@@ -2,39 +2,155 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json/deploy.schema.json",
   "type": "object",
-  "properties": {
-    "mojanalytics-deploy": {
-      "type": "string"
-    },
-    "disable_authentication": {
-      "type": "boolean"
-    },
-    "allowed_ip_ranges": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": ""
+  "title": "MOJ Analytical Services Deploy.json Specification",
+  "definitions": {
+    "common": {
+      "type": "object",
+      "properties": {
+        "mojanalytics-deploy": {
+          "type": "string",
+          "description": "Version of deploy.json schema you're using",
+          "pattern": "(?<=^v?|\\sv?)(?:0|[1-9]\\d*)\\.(?:0|[1-9]\\d*)\\.(?:0|[1-9]\\d*)(?:-(?:[1-9]\\d*|[\\da-z-]*[a-z-][\\da-z-]*)(?:\\.(?:[1-9]\\d*|[\\da-z-]*[a-z-][\\da-z-]*))*)?(?:\\+[\\da-z-]+(?:\\.[\\da-z-]+)*)?(?=$|\\s)"
+        },
+        "type": {
+          "type": "string",
+          "default": "webapp",
+          "enum": [
+            "airflow_dag",
+            "webapp",
+            "docker_build",
+            "lookup"
+          ],
+          "description": "The type of deployment"
+        }
       },
-      "minItems": 1
-    },
-    "type": {
-      "type": "string",
-      "default": "webapp",
-      "enum": [
-        "airflow_dag",
-        "webapp",
-        "docker_build",
-        "lookup"
+      "required": [
+        "mojanalytics-deploy"
       ]
     },
-    "role_name": {
-      "type": "string"
+    "lookup": {
+      "title": "Data lookup table",
+      "allOf": [
+        {
+          "$ref": "#/definitions/common"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "lookup"
+            }
+          }
+        },
+        {
+          "additionalItems": false
+        }
+      ]
     },
-    "port": {
-      "type": "string"
+    "docker_build": {
+      "title": "Docker build",
+      "allOf": [
+        {
+          "$ref": "#/definitions/common"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "docker_build"
+            }
+          }
+        },
+        {
+          "additionalItems": false
+        }
+      ]
+    },
+    "airflow_dag": {
+      "title": "Airflow Dag",
+      "allOf": [
+        {
+          "$ref": "#/definitions/common"
+        },
+        {
+          "properties": {
+            "role_name": {
+              "type": "string",
+              "description": "If this repository is for an 'airflow_dag' then the role name for this dag",
+              "pattern": "^airflow_.*$"
+            },
+            "type": {
+              "const": "airflow_dag"
+            }
+          },
+          "required": [
+            "type",
+            "role_name"
+          ]
+        }
+      ]
+    },
+    "webapp": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/common"
+        },
+        {
+          "properties": {
+            "disable_authentication": {
+              "type": "boolean",
+              "default": false,
+              "description": "Disable all authentication for your webapp"
+            },
+            "allowed_ip_ranges": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])(?:\\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])){3}\\/(3[0-2]|[12]?[0-9])"
+              }
+            },
+            "port": {
+              "type": "string",
+              "description": "The port your service will listen on for HTTP traffic, for shiny-server this should be 9999",
+              "default": "80"
+            },
+            "type": {
+              "const": "webapp"
+            }
+          }
+        }
+      ]
     }
   },
-  "required": [
-    "mojanalytics-deploy"
+  "anyOf": [
+    {
+      "$ref": "#/definitions/airflow_dag"
+    },
+    {
+      "$ref": "#/definitions/webapp"
+    },
+    {
+      "$ref": "#/definitions/lookup"
+    },
+    {
+      "$ref": "#/definitions/docker_build"
+    }
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "airflow_dag"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "required": [
+          "role_name"
+        ]
+      }
+    }
   ]
 }

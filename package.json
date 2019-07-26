@@ -10,7 +10,7 @@
     "@adobe/jsonschema2md": "^3.0.0"
   },
   "scripts": {
-    "docs": "rm -rf docs && mkdir -p docs && jsonschema2md -o ./docs -d ./schemas -n -x - && marked -i docs/deploy.schema.md -o docs/index.html",
+    "docs": "rm -rf docs && mkdir -p docs && jsonschema2md -o ./docs -d ./schemas -n -x - -m template=definitions -m hide-nav=true",
     "clean-source": "rm -rf docs"
   }
 }

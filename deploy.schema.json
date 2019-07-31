@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json@v1.0.0/deploy.schema.json",
+  "$id": "https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json@v1.1.0/deploy.schema.json",
   "type": "object",
   "title": "MOJ Analytical Services Deploy.json Specification",
   "definitions": {
@@ -114,6 +114,13 @@
             },
             "type": {
               "const": "webapp"
+            },
+            "connections": {
+              "type": "array",
+              "default": ["email"],
+              "items": {
+                "type": "string"
+              }
             }
           }
         }

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json@v1.1.0/deploy.schema.json",
+  "$id": "https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json@v1.1.1/deploy.schema.json",
   "type": "object",
   "title": "MOJ Analytical Services Deploy.json Specification",
   "definitions": {
@@ -104,7 +104,14 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "pattern": "(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])(?:\\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])){3}\\/(3[0-2]|[12]?[0-9])"
+                "default": "DOM1",
+                "enum": [
+                  "DOM1",
+                  "102PF Wifi",
+                  "Digital Wifi and VPN",
+                  "Any",
+                  "QUANTUM"
+                ]
               }
             },
             "port": {

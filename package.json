@@ -1,6 +1,6 @@
 {
   "name": "deploy.json",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "JSONSchema for deploy.json",
   "repository": "git@github.com:moj-analytical-services/deploy.json.git",
   "author": "Ravi Kotecha <kotecha.ravi@gmail.com>",
@@ -10,7 +10,13 @@
     "@adobe/jsonschema2md": "^3.0.0"
   },
   "scripts": {
+    "start": "node src/index.js",
     "docs": "rm -rf docs && mkdir -p docs && jsonschema2md -o ./docs -d ./schemas -n -x - -m template=definitions -m hide-nav=true",
     "clean-source": "rm -rf docs"
+  },
+  "dependencies": {
+    "ajv": "^6.10.2",
+    "commander": "^3.0.0",
+    "superagent": "^5.1.0"
   }
 }

@@ -6,7 +6,7 @@ hide-nav: true
 # MOJ Analytical Services Deploy.json Specification Schema
 
 ```
-https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json/deploy.schema.json
+https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json@v1.1.1/deploy.schema.json
 ```
 
 | Abstract               | Extensible | Status       | Identifiable | Custom Properties | Additional Properties | Defined In                               |
@@ -15,10 +15,10 @@ https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json/deploy.schema.js
 
 # MOJ Analytical Services Deploy.json Specification Definitions
 
-| Property                                    | Type     | Group                                                                                                    |
-| ------------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------- |
-| [mojanalytics-deploy](#mojanalytics-deploy) | `string` | `https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json/deploy.schema.json#/definitions/common` |
-| [type](#type)                               | `enum`   | `https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json/deploy.schema.json#/definitions/common` |
+| Property                                    | Type     | Group                                                                                                           |
+| ------------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------- |
+| [mojanalytics-deploy](#mojanalytics-deploy) | `string` | `https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json@v1.1.1/deploy.schema.json#/definitions/common` |
+| [type](#type)                               | `enum`   | `https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json@v1.1.1/deploy.schema.json#/definitions/common` |
 
 ## mojanalytics-deploy
 
@@ -76,3 +76,7 @@ The value of this property **must** be equal to one of the [known values below](
 #### Option 3
 
 - []() – `#/definitions/lookup`
+
+#### Option 4
+
+- []() – `#/definitions/docker_build`

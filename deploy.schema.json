@@ -129,6 +129,11 @@
               "items": {
                 "type": "string"
               }
+            },
+            "health_check": {
+              "type": "string",
+              "description": "Path http path for livenessProbe in webapp deployment",
+              "default": "/?healthz"
             }
           }
         }

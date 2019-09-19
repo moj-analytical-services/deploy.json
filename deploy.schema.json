@@ -132,7 +132,7 @@
             },
             "health_check": {
               "type": "string",
-              "description": "Path http path for livenessProbe in webapp deployment",
+              "description": "http path for livenessProbe and readinessProbe in webapp deployment",
               "default": "/?healthz"
             }
           }

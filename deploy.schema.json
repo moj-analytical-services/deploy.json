@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json@v1.2.0/deploy.schema.json",
+  "$id": "https://cdn.jsdelivr.net/gh/moj-analytical-services/deploy.json@v1.3.0/deploy.schema.json",
   "type": "object",
   "title": "MOJ Analytical Services Deploy.json Specification",
   "definitions": {
@@ -129,6 +129,11 @@
               "items": {
                 "type": "string"
               }
+            },
+            "health_check": {
+              "type": "string",
+              "description": "http path for livenessProbe and readinessProbe in webapp deployment",
+              "default": "/?healthz"
             }
           }
         }
